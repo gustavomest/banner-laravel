@@ -1,0 +1,38 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="max-w-md mx-auto mt-10 bg-white p-8 rounded-lg shadow-md">
+        <h1 class="text-2xl font-semibold text-gray-700 text-center">Criar lista</h1>
+        
+        <form action="{{ route('tasks.store') }}" method="POST">
+            @csrf
+            <div class="mt-4">
+                <label for="title" class="block text-sm font-medium text-gray-600">Título da lista</label>
+                <input type="text" name="title" id="title" placeholder="Coloque aqui o título da lista" required
+                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500 p-2">
+                @error('title')
+                    <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mt-4">
+                <label for="description" class="block text-sm font-medium text-gray-600">Descrição da lista</label>
+                <textarea name="description" id="description" placeholder="Coloque aqui a descrição da lista" 
+                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500 p-2"></textarea>
+                @error('description')
+                    <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mt-6">
+                <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    Criar lista
+                </button>
+            </div>
+        </form>
+
+        <div class="mt-4 text-center">
+            <a href="{{ route('tasks.index') }}" class="text-blue-600 hover:underline">Voltar para as listas</a>
+        </div>
+    </div>
+@endsection
